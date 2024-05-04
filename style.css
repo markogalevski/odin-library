@@ -1,0 +1,65 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0
+}
+
+.header {
+  background-color: rgb(135, 203, 204);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 15px;
+  padding-left: 50px;
+}
+
+.logo {
+  flex: 1;
+  margin-right: auto;
+}
+
+.library-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding-bottom: 50px;
+}
+
+.new-book-form {
+  flex: 0;
+}
+
+
+#book-collection {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 80vw;
+
+}
+
+.book {
+  border: solid black 1px;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 10px 5px 5px rgb(125, 125, 125);
+  width: 150px;
+  height: 150px;
+}
+
+
+.footer {
+  padding: 20px;
+  display: flex;
+  flex: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(135, 203, 204);
+
+}
