@@ -22,22 +22,22 @@
 				<span>Add new book... </span>
 				<form action="submit">
 					<div class="formline">
-						<label>Title: </label><input type="text" id="title"></input>
+						<label>Title: </label><input placeholder="Title" type="text" id="title" required />
 					</div>
 					<div class="formline">
-						<label>Author: </label><input type="text" id="author"></input>
+						<label>Author: </label><input placeholder="Author" type="text" id="author" required />
 					</div>
 					<div class="formline">
-						<label>Pages: </label><input type="tel" id="pages"></input>
+						<label>Pages: </label><input placeholder="Page count" type="tel" id="pages" required />
 					</div>
 					<div class="formline">
 						<label>Read: </label><input type="checkbox" id="read"></input>
 					</div>
+					<div class="buttons">
+						<button id="cancel">Cancel</button>
+						<input id="add" type="submit" value="Add" />
+					</div>
 				</form>
-				<div class="buttons">
-					<button id="cancel">Cancel</button>
-					<input id="add" type="submit" value="Add" />
-				</div>
 			</div>
 		</dialog>
 

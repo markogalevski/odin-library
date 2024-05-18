@@ -2,7 +2,7 @@ const myLibrary = [];
 const bookCollection = document.getElementById("book-collection");
 const openButton = document.getElementById("open");
 const cancelButton = document.getElementById("cancel");
-const addButton = document.getElementById("add");
+const addButton = document.querySelector("form");
 const dialog = document.querySelector("dialog");
 
 const inputTitle = document.getElementById("title");
@@ -19,7 +19,7 @@ cancelButton.addEventListener("click", () => {
   dialog.close();
 })
 
-addButton.addEventListener("click", (e) => {
+addButton.addEventListener("submit", (e) => {
   const title = String(inputTitle.value);
   const author = inputAuthor.value;
   const pages = inputPages.value;
@@ -36,7 +36,6 @@ function clearForm() {
   inputPages.value = "";
   inputRead.checked = false;
 }
-
 
 function Book(title, author, numPages, isRead) {
   this.title = title;
