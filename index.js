@@ -20,8 +20,6 @@ cancelButton.addEventListener("click", () => {
 })
 
 addButton.addEventListener("click", (e) => {
-  /* actually add to list from the form data */
-  //i.e. this should be the actual submit button 
   const title = String(inputTitle.value);
   const author = inputAuthor.value;
   const pages = inputPages.value;
@@ -46,25 +44,32 @@ function Book(title, author, numPages, isRead) {
   this.numPages = numPages;
   this.isRead = isRead;  
   this.index = myLibrary.length;
+  this.toggleRead = function () {
+    this.isRead = !this.isRead;
+    const read = this.element.querySelector('div.read');
+    read.textContent = `Read?: ${this.isRead ? "🤓" : "📖"}`;        
+  }
   this.createCard = function () {
 
     const book = document.createElement('div');
     book.classList.add('book')
     const title = document.createElement('div');
     title.classList.add('title');
-    title.textContent = this.title;
+    title.textContent = `Title: ${this.title}`;
     const author= document.createElement('div');
     author.classList.add('author');
-    author.textContent = this.author;
+    author.textContent = `Author: ${this.author}`;
     const numPages = document.createElement('div');
     numPages.classList.add('num-pages');
-    numPages.textContent = this.numPages;
+    numPages.textContent = `Page Count: ${this.numPages}`;
     const read = document.createElement('div');
     read.classList.add('read');
-    read.textContent = this.isRead ? "yes" : "no";
+    read.textContent = `Read?: ${this.isRead ? "🤓" : "📖"}`;        
+    const cardButtons = document.createElement('div');
+    cardButtons.classList.add('card-buttons');
     const deleteButton = document.createElement('button');
     deleteButton.classList.add("remove");
-    deleteButton.textContent = "Remove book";
+    deleteButton.textContent = "Remove";
     deleteButton.addEventListener("click", () => {
       const book = myLibrary[this.index];
       book.element.style.animation = "fade-out 0.2s ease-in";
@@ -77,11 +82,19 @@ function Book(title, author, numPages, isRead) {
         }
       });
     })
+    const readButton = document.createElement('button');
+    readButton.classList.add("read");
+    readButton.textContent = "Read";
+    readButton.addEventListener("click", () => {
+      this.toggleRead();
+    })
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(numPages);
     book.appendChild(read);
-    book.appendChild(deleteButton);
+    cardButtons.appendChild(deleteButton);
+    cardButtons.appendChild(readButton);
+    book.appendChild(cardButtons)
     this.element = book;
     bookCollection.appendChild(book);
   }
