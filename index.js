@@ -106,10 +106,3 @@ function addBookToLibrary(title, author, numPages, isRead) {
    book.createCard();
 }
 
-
-/* Dummy test stuff */
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
-addBookToLibrary("The Fellowship Of The Ring", "J.R.R. Tolkien", 405, true);
-addBookToLibrary("The Two Towers", "J.R.R. Tolkien", 295, true);
-addBookToLibrary("The Return of the King", "J.R.R. Tolkien", 295, true);
-
