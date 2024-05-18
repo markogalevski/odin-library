@@ -30,6 +30,7 @@ addButton.addEventListener("click", (e) => {
   displayAllBooks();
   clearForm();
   dialog.close();
+  e.preventDefault();
 })
 
 function clearForm() {
@@ -37,7 +38,6 @@ function clearForm() {
   inputAuthor.value = "";
   inputPages.value = "";
   inputRead.checked = false;
-  
 }
 
 
@@ -46,6 +46,7 @@ function Book(title, author, numPages, isRead) {
   this.author = author;
   this.numPages = numPages;
   this.isRead = isRead;  
+  this.index = myLibrary.length;
   this.createCard = function () {
     /*
 			<div class="book">
@@ -69,10 +70,21 @@ function Book(title, author, numPages, isRead) {
     const read = document.createElement('div');
     read.classList.add('read');
     read.textContent = this.isRead ? "yes" : "no";
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add("remove");
+    deleteButton.textContent = "Remove book";
+    deleteButton.addEventListener("click", () => {
+      myLibrary.splice(this.index, 1);
+      for (const book of myLibrary) {
+        book.index = myLibrary.indexOf(book);
+      }
+      displayAllBooks();
+    })
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(numPages);
     book.appendChild(read);
+    book.appendChild(deleteButton);
     bookCollection.appendChild(book);
   }
 }
@@ -98,6 +110,5 @@ addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
 addBookToLibrary("The Fellowship Of The Ring", "J.R.R. Tolkien", 405, true);
 addBookToLibrary("The Two Towers", "J.R.R. Tolkien", 295, true);
 addBookToLibrary("The Return of the King", "J.R.R. Tolkien", 295, true);
-
 displayAllBooks();
 

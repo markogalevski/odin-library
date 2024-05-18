@@ -46,12 +46,21 @@ body {
 
 .book {
   border: solid black 1px;
+  display: flex;
+  flex-direction: column;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 10px 5px 5px rgb(125, 125, 125);
   width: 150px;
   height: 150px;
+  justify-content: center;
 }
+
+.book div.read {
+  flex: 1;
+}
+
+
 
 
 .footer {
