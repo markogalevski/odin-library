@@ -27,7 +27,6 @@ addButton.addEventListener("click", (e) => {
   const pages = inputPages.value;
   const read = inputRead.checked;
   addBookToLibrary(title, author, pages, read);
-  displayAllBooks();
   clearForm();
   dialog.close();
   e.preventDefault();
@@ -48,14 +47,7 @@ function Book(title, author, numPages, isRead) {
   this.isRead = isRead;  
   this.index = myLibrary.length;
   this.createCard = function () {
-    /*
-			<div class="book">
-				<div class="title">The Hobbit</div>
-				<div class="author">J.R.R. Tolkien</div>
-				<div class="num-pages">295</div>
-				<div class="read">yes</div>
-			</div>
-    */
+
     const book = document.createElement('div');
     book.classList.add('book')
     const title = document.createElement('div');
@@ -74,41 +66,37 @@ function Book(title, author, numPages, isRead) {
     deleteButton.classList.add("remove");
     deleteButton.textContent = "Remove book";
     deleteButton.addEventListener("click", () => {
-      myLibrary.splice(this.index, 1);
-      for (const book of myLibrary) {
-        book.index = myLibrary.indexOf(book);
-      }
-      displayAllBooks();
+      const book = myLibrary[this.index];
+      book.element.style.animation = "fade-out 0.2s ease-in";
+      book.element.style.opacity = "0";
+      book.element.addEventListener('animationend', () => {
+        bookCollection.removeChild(book.element);
+        myLibrary.splice(this.index, 1);
+        for (const book of myLibrary) {
+          book.index = myLibrary.indexOf(book);
+        }
+      });
     })
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(numPages);
     book.appendChild(read);
     book.appendChild(deleteButton);
+    this.element = book;
     bookCollection.appendChild(book);
   }
 }
 
 function addBookToLibrary(title, author, numPages, isRead) {
-  myLibrary.push(new Book(title, author, numPages, isRead));
+  const book = new Book(title, author, numPages, isRead); 
+   myLibrary.push(book);
+   book.createCard();
 }
 
-
-function displayAllBooks() {
-  while (bookCollection.firstChild) {
-    bookCollection.removeChild(bookCollection.lastChild);
-  }
-  myLibrary.forEach((book) =>  {
-    // Create card component
-    book.createCard();
-    
-  })
-}
 
 /* Dummy test stuff */
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
 addBookToLibrary("The Fellowship Of The Ring", "J.R.R. Tolkien", 405, true);
 addBookToLibrary("The Two Towers", "J.R.R. Tolkien", 295, true);
 addBookToLibrary("The Return of the King", "J.R.R. Tolkien", 295, true);
-displayAllBooks();
 
