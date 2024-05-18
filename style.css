@@ -12,6 +12,7 @@ body {
   align-items: flex-start;
   padding: 15px;
   padding-left: 50px;
+  box-shadow: 0 5px 5px rgb(125, 125, 125);
 }
 
 .logo {
@@ -61,5 +62,6 @@ body {
   align-items: center;
   justify-content: center;
   background-color: rgb(135, 203, 204);
+  box-shadow: 0 -5px 5px rgb(125, 125, 125);
 
 }

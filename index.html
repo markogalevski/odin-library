@@ -15,6 +15,20 @@
 	</div>
 	<div class="library-body">
 		<div class="new-book-form"></div>
+		<button id="open">Add book...</button>
+
+		<dialog>
+			<form action="submit">
+				<span>Add new book... </span>
+				<input type="text" id="title"></input>
+				<input type="text" id="author"></input>
+				<input type="tel" id="pages"></input>
+				<input type="checkbox" id="read"></input>
+			</form>
+			<button id="cancel">Cancel</button>
+			<input id="add" type="submit" value="Add" />
+		</dialog>
+
 		<div id="book-collection">
 
 		</div>

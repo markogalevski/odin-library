@@ -1,5 +1,45 @@
 const myLibrary = [];
 const bookCollection = document.getElementById("book-collection");
+const openButton = document.getElementById("open");
+const cancelButton = document.getElementById("cancel");
+const addButton = document.getElementById("add");
+const dialog = document.querySelector("dialog");
+
+const inputTitle = document.getElementById("title");
+const inputAuthor = document.getElementById("author");
+const inputPages = document.getElementById("pages");
+const inputRead = document.getElementById("read");
+
+openButton.addEventListener(("click"), () =>  {
+  dialog.showModal();
+})
+
+cancelButton.addEventListener("click", () => {
+  clearForm();
+  dialog.close();
+})
+
+addButton.addEventListener("click", (e) => {
+  /* actually add to list from the form data */
+  //i.e. this should be the actual submit button 
+  const title = String(inputTitle.value);
+  const author = inputAuthor.value;
+  const pages = inputPages.value;
+  const read = inputRead.checked;
+  addBookToLibrary(title, author, pages, read);
+  displayAllBooks();
+  clearForm();
+  dialog.close();
+})
+
+function clearForm() {
+  inputTitle.value = "";
+  inputAuthor.value = "";
+  inputPages.value = "";
+  inputRead.checked = false;
+  
+}
+
 
 function Book(title, author, numPages, isRead) {
   this.title = title;
